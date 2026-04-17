@@ -1,8 +1,8 @@
 #!/bin/bash
 
 HOSTNAME=$(hostname)
-DOMAIN="${HOSTNAME}.devstech.web.id" # Set domain here
-WEBHOOK_URL="https://rachel.devstech.web.id/api/v1/compute-webhooks/installation-progress"
+DOMAIN="${HOSTNAME}.sandboxwork.my.id" # Set domain here
+WEBHOOK_URL="https://rachel.sandboxwork.my.id/api/v1/compute-webhooks/installation-progress"
 
 PROGRESS=0
 CURRENT_STEP="install_docker"
@@ -84,7 +84,7 @@ if [ -d "$COMPOSE_DIR/.git" ]; then
   cd "$COMPOSE_DIR"
   git pull
 else
-  git clone https://github.com/AlpinTriMCI/initial-n8n-tools.git "$COMPOSE_DIR" # Set git url
+  git clone https://github.com/AlpinTriMCI/initial-n8n-tools-priv.git "$COMPOSE_DIR" # Set git url
   cd "$COMPOSE_DIR"
 fi
 
