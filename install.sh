@@ -28,15 +28,17 @@ send_progress() {
       \"progress\":\"$PROGRESS\",
       \"message\":\"$message\",
       \"timestamp\":\"$timestamp\",
+      \"error\": $error,
       \"subdomains\": $subdomains
     }" >/dev/null 2>&1
 }
 
 trap '
+  EXIT_CODE=$?
   LINE=$LINENO
-  CMD=$(sed -n ${LINENO}p $0 | sed "s/\"/\\\"/g")
-  send_progress "failed" "Installation failed during $LINE: $CMD" 1
-  exit 1
+  CMD=$(echo "$BASH_COMMAND" | sed "s/\"/\\\"/g")
+  send_progress "failed" "Installation failed (exit code: $EXIT_CODE) at line $LINE: $CMD" 1
+  exit $EXIT_CODE
 ' ERR
 
 set -e
@@ -115,7 +117,7 @@ PROGRESS=90
 CURRENT_STEP="build_compose"
 send_progress "running" "Deploying containers..."
 
-# sudo docker compose up -d
+sudo docker compose up -d
 
 PROGRESS=100
 CURRENT_STEP="build_compose"
