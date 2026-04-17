@@ -15,6 +15,9 @@ send_progress() {
   local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
   local subdomains='["n8n"]'
 
+  # test for UI progress bar
+  sleep 20
+
   # send json webhook
   curl -s -X POST "$WEBHOOK_URL" \
     -H "Content-Type: application/json" \
