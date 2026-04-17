@@ -117,7 +117,7 @@ PROGRESS=90
 CURRENT_STEP="build_compose"
 send_progress "running" "Deploying containers..."
 
-sudo docker compose up -d
+# sudo docker compose up -d
 
 PROGRESS=100
 CURRENT_STEP="build_compose"
